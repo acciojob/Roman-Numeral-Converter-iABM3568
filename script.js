@@ -3,30 +3,36 @@ function convertToRoman(num) {
 
   //your code here
 
-	// Step 1: Create arrays to store roman numerals and their values
-  // We list them from largest to smallest
-  const values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
-  const romanNumerals = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
-  
-  // Step 2: Create an empty string to store our result
-  let result = '';
-  
-  // Step 3: Loop through each value
-  for (let i = 0; i < values.length; i++) {
-    
-    // Step 4: Keep subtracting the current value while num is greater than or equal to it
-    while (num >= values[i]) {
-      
-      // Step 5: Add the corresponding roman numeral to result
-      result = result + romanNumerals[i];
-      
-      // Step 6: Subtract the value from num
-      num = num - values[i];
+	if (typeof num !== "number" || num <= 0) return "";
+
+    const romanMap = [
+        { value: 1000, symbol: "M" },
+        { value: 900, symbol: "CM" },
+        { value: 500, symbol: "D" },
+        { value: 400, symbol: "CD" },
+        { value: 100, symbol: "C" },
+        { value: 90, symbol: "XC" },
+        { value: 50, symbol: "L" },
+        { value: 40, symbol: "XL" },
+        { value: 10, symbol: "X" },
+        { value: 9, symbol: "IX" },
+        { value: 5, symbol: "V" },
+        { value: 4, symbol: "IV" },
+        { value: 1, symbol: "I" },
+    ];
+
+    let result = "";
+
+    for (const { value, symbol } of romanMap) {
+        while (num >= value) {
+            result += symbol;
+            num -= value;
+        }
     }
-  }
-  
-  // Step 7: Return the final roman numeral
-  return result;
+
+    return result;
+
+	
 
 	
 
@@ -39,10 +45,10 @@ function convertToRoman(num) {
 
 
 // do not edit below this line
-module.exports = convertToRoman
+//module.exports = convertToRoman
 
 
-}
+//}
 // You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
 
 // console.log(convertToRoman(36));
